@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.example'
+            artifactId 'hello-plugin'
+            version '1.0'
+
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}

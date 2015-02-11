@@ -1,0 +1,14 @@
+buildscript {
+    repositories {
+        maven {
+            url "/Users/jamesyan/.m2/repository"
+        }
+    }
+    dependencies {
+        classpath group:'com.example', name:'hello-plugin', version:'1.0'
+    }
+}
+
+apply plugin: 'com.example.hello'
+
+
