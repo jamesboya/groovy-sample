@@ -1,0 +1,7 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'com.farukon.SampleApp'
+sourceCompatibility = 1.8
+version = '1.0'
+

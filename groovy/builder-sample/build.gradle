@@ -1,0 +1,14 @@
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.1'
+}
+
+task runScript (dependsOn: 'classes', type: JavaExec) {
+    main = 'com.farukon.CarList'
+    classpath = sourceSets.main.runtimeClasspath
+}
