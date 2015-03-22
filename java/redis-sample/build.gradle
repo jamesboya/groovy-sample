@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+version = '1.0'
+
+buildscript {
+    repositories { mavenCentral() }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-redis")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.5.1")
+}
