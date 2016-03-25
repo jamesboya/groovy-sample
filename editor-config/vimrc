@@ -1,0 +1,74 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'nanotech/jellybeans.vim.git'
+Plugin 'ervandew/supertab'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'ctrlp.vim'
+Plugin 'ZoomWin'
+Plugin 'Syntastic'
+Plugin 'matchit.zip'
+Plugin 'tComment'
+Plugin 'sickill/vim-pasta'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'klen/python-mode'
+Plugin 'jiangmiao/auto-pairs.git'
+Plugin 'tpope/vim-surround.git'
+"Plugin 'xoria256.vim'
+"Plugin 'tristen/vim-sparkup'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" customized key maps
+let mapleader = ","
+let g:mapleader = ","
+
+nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
+nmap <leader>m :CtrlPMRUFiles<cr>
+
+" environment configurations
+syntax enable
+colorscheme jellybeans
+
+set relativenumber
+set ic
+set scs
+set ls=2
+set bs=2                " allow backspacing over everything in insert mode
+set ai                  " always set autoindenting on
+set tw=79
+set viminfo='20,\"50    " read/write a .viminfo file, don't store more
+                        " than 50 lines of registers
+set history=100         " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
+set tabstop=2
+set encoding=utf-8
+set fileencodings=utf-8,cp950
+set sw=2
+set notitle
+set hidden
+set vb t_vb=
+set makeprg=gmake
+set wildmenu
+set wildignore=*.bak,*.o,*.e,*~,*.so
+set wildmode=list:full
+set ssop=curdir,folds,buffers
+set nohlsearch
+
+" python mode
+let g:pymode_python = 'python3'
+autocmd BufEnter __run__,__doc__ :wincmd L

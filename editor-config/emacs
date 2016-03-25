@@ -1,0 +1,40 @@
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
+
+(use-package evil
+  :ensure t
+  :config (evil-mode t))
+
+;; (use-package yasnippet
+;;   :ensure t
+;;   :diminish yas-minor-mode
+;;   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
+;;   :init
+;;   (progn
+;;     (setq yas-verbosity 3)
+;;     (yas-global-mode 1)))
+
+(use-package magit :ensure t)
+(use-package python-mode :ensure t)
+(use-package org
+  :ensure t
+  :config (setq org-agenda-files (list "~/Documents/workspace/work.org"
+				       "~/Documents/workspace/school.org"
+				       "~/Documents/workspace/home.org")))
+(use-package restclient :ensure t)
+(use-package badger-theme :ensure t)
+
+(ido-mode t)
