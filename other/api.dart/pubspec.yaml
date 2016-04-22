@@ -1,0 +1,6 @@
+name: app
+dependencies:
+  http: 
+  redstone:
+  mongo_dart:
+  test:

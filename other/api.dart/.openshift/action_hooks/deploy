@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -x
+
+if [ ! -d $OPENSHIFT_DATA_DIR/dart-sdk ]
+then
+  cd $OPENSHIFT_DATA_DIR
+  wget https://storage.googleapis.com/dart-archive/channels/stable/release/1.13.1/sdk/dartsdk-linux-ia32-release.zip
+  unzip dartsdk-linux-ia32-release.zip
+fi
+
+export PUB_CACHE=$OPENSHIFT_DATA_DIR
+
+cd $OPENSHIFT_REPO_DIR
+$OPENSHIFT_DATA_DIR/dart-sdk/bin/pub get

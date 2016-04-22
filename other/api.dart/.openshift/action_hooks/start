@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+set -x
+
+cd $OPENSHIFT_REPO_DIR
+nohup $OPENSHIFT_DATA_DIR/dart-sdk/bin/dart bin/server.dart &
