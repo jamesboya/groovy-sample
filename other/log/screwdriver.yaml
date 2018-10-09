@@ -1,0 +1,50 @@
+# the config detail you could reference: https://partner.git.corp.yahoo.com/pages/Screwdriver/guide/v3/platforms/java/
+platform: java
+
+shared:
+  notifications:
+    email: "<your team's email>"
+    hipchat:
+      room: &CHATROOM_NUMBER "<your team's hipchat room number>"
+      status: [failure, aborted, unstable]
+
+  steps:
+    clean-up:
+      description: >
+        clean up artifact
+      command: mvn clean
+
+    publish:
+      branch: test
+
+    mvn-cucumber-test:
+      description: >
+        run cucumber tests against one Manhattan instance
+      command: mvn verify
+      arguments:
+        enviroment:
+          description: enviroment which the cucumber tests will run against
+          type: string
+          parameter: -Denv
+          operator: =
+          default_value: ""
+        profile:
+          description: specify maven profile for cucumber test if needed
+          type: string
+          parameter: -P
+          operator: =
+          default_value: ""
+
+profiles:
+    cucumber-test:
+      description: run cucumber tests only
+      order: [init, assemble, flatten, restore, mvn-cucumber-test]
+
+jobs:
+  pull-request:
+    build_containers: [oracle-jdk8-current]
+    # notify success PR to make people review it
+    notifications:
+      hipchat:
+        room: *CHATROOM_NUMBER
+        status: [success]

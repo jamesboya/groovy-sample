@@ -1,0 +1,5 @@
+target/
+parsec-bin/
+.idea/
+*.iml
+

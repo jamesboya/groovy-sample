@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.yahoo.ec.parsec</groupId>
+        <artifactId>parsec-base-build</artifactId>
+        <version>2.0.40</version>
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>sample</artifactId>
+    <packaging>war</packaging>
+    <name>sample</name>
+    <description>sample</description>
+    <version>1.0.0-SNAPSHOT</version>
+    <url>https://yahoo.jiveon.com/groups/your-jive-group</url>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://jira.corp.yahoo.com/browse/your-jira-project</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <bug.product>your product</bug.product>
+        <bug.component>your component</bug.component>
+        <mailingList.name>your-mailing-list@yahoo-inc.com</mailingList.name>
+        <scm.path>your-scm-path</scm.path>
+
+        <yjava_bcookie.version>1.11.20</yjava_bcookie.version>
+        <yjava_byauth.version>0.9.643</yjava_byauth.version>
+        <yjava_yca.version>0.30.58</yjava_yca.version>
+        <yjava_yck.version>0.20.206</yjava_yck.version>
+        <yjava_ycore.version>0.13.19</yjava_ycore.version>
+        <yjava_yhdrs.version>0.15.2407</yjava_yhdrs.version>
+        <yjava_yiv.version>0.11.15</yjava_yiv.version>
+        <yjava_ynet.version>0.12.109</yjava_ynet.version>
+        <yjava_ysecure.version>1.30.39</yjava_ysecure.version>
+        <yjava_status.version>0.0.6</yjava_status.version>
+
+        <checkstyle.skip>false</checkstyle.skip>
+        <enforcer.skip>true</enforcer.skip>
+        <pmd.skip>false</pmd.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.findbugs.failure.strict>true</maven.findbugs.failure.strict>
+
+        <parsec.generate_client>true</parsec.generate_client>
+        <parsec.server_base_path></parsec.server_base_path>
+        <parsec.finalName>/api</parsec.finalName>
+        <parsec.generate_url_regex_list>true</parsec.generate_url_regex_list>
+    </properties>
+
+    <scm>
+        <developerConnection>scm:git:ssh://git@git.corp.yahoo.com/your-git-path.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-servlets</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.code.gson</groupId>-->
+            <!--<artifactId>gson</artifactId>-->
+            <!--<version>2.8.5</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.7</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.asynchttpclient</groupId>
+            <artifactId>async-http-client</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>4.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.11.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Provided -->
+        <dependency>
+            <groupId>yahoo.yinst.yjava_yca</groupId>
+            <artifactId>yjava_yca</artifactId>
+            <version>${yjava_yca.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_ysecure</groupId>
+            <artifactId>yjava_ysecure</artifactId>
+            <version>${yjava_ysecure.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_bcookie</groupId>
+            <artifactId>yjava_bcookie</artifactId>
+            <version>${yjava_bcookie.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_byauth</groupId>
+            <artifactId>yjava_byauth</artifactId>
+            <version>${yjava_byauth.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_ynet</groupId>
+            <artifactId>yjava_ynet</artifactId>
+            <version>${yjava_ynet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_yhdrs</groupId>
+            <artifactId>yjava_yhdrs</artifactId>
+            <version>${yjava_yhdrs.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_ycore</groupId>
+            <artifactId>yjava_ycore</artifactId>
+            <version>${yjava_ycore.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_yck</groupId>
+            <artifactId>yjava_yck</artifactId>
+            <version>${yjava_yck.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>yahoo.yinst.yjava_yiv</groupId>
+            <artifactId>yjava_yiv</artifactId>
+            <version>${yjava_yiv.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-log4j12</artifactId>-->
+        <!--<version>${slf4j.version}</version>-->
+        <!--</dependency>-->
+    </dependencies>
+</project>

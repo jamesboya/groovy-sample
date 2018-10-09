@@ -1,0 +1,43 @@
+#!/usr/local/bin/perl
+
+print <<'EOF';
+PRODUCT_NAME = $(POM_GROUP_ID_NO_YAHOO_YINST)
+VERSION = $(POM_BASE_VERSION)_$(BUILD_NUMBER)
+SHORT_DESC = $(POM_DESCRIPTION)
+LONG_DESC = `/bin/sh README.sh`
+CUSTODIAN = "$(POM_MAILINGLIST_0_NAME) $(POM_URL)"
+PACKAGE_OS_SPECIFIC = no
+#YMAVEN_TRANSITIVE_ENABLED
+
+YINST bug-product $(POM_BUG_PRODUCT)
+YINST bug-component $(POM_BUG_COMPONENT)
+
+MAJOR_VERSION = `echo $(VERSION) | /usr/bin/awk -F. '{print $1}'`
+MINOR_VERSION = `echo $(VERSION) | /usr/bin/awk -F. '{print $2}'`
+
+YINST started-by yjava_jetty
+YINST set autostart on
+
+YINST requires pkg yjava_jetty
+YINST requires pkg yjava_jdk        1.8.0   1.8.99999.99999
+
+
+file - - - libexec/webapps/$(PRODUCT_NAME).war      target/$(PRODUCT_NAME).war
+file - - - lib/jars/$(PRODUCT_NAME).pom target/pom.xml
+g - - - conf/parsec_monitor/url_regex_list/ target/generated-resources/parsec/url-regex-list/*.json
+
+EOF
+
+if($ENV{"BUILDTYPE"} eq "release") {
+print <<'EOF';
+
+file - - - lib/jars/$(POM_ARTIFACT_ID)-$(VERSION)-sources.jar target/$(POM_ARTIFACT_ID)-sources.jar
+symlink - - - lib/jars/$(POM_ARTIFACT_ID)-$(MAJOR_VERSION).$(MINOR_VERSION)-sources.jar $(POM_ARTIFACT_ID)-$(VERSION)-sources.jar
+symlink - - - lib/jars/$(POM_ARTIFACT_ID)-$(MAJOR_VERSION)-sources.jar $(POM_ARTIFACT_ID)-$(VERSION)-sources.jar
+symlink - - - lib/jars/$(POM_ARTIFACT_ID)-sources.jar $(POM_ARTIFACT_ID)-$(VERSION)-sources.jar
+
+f - - - lib/jars/$(PRODUCT_NAME)-site.jar target/$(PRODUCT_NAME)-site.jar
+f - - - lib/jars/$(PRODUCT_NAME)-javadoc.jar target/$(PRODUCT_NAME)-javadoc.jar
+
+EOF
+}

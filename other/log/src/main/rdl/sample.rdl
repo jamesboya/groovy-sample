@@ -1,0 +1,32 @@
+// define namespace, service name, ver
+namespace com.example;
+name sample;
+version 1;
+
+// define datatype
+type User struct {
+    int32 id;
+    string name;
+}
+
+include "ParsecResourceError.rdli"
+
+// define endpoints
+// create a new user
+resource User POST "/users" {
+    User user;
+    expected CREATED;
+}
+
+// get a user by id
+resource User GET "/users/{id}" {
+    int32 id;
+    expected OK;
+    exceptions {
+        ParsecResourceError INTERNAL_SERVER_ERROR;
+        ParsecResourceError BAD_REQUEST;
+        ParsecResourceError UNAUTHORIZED;
+        ParsecResourceError FORBIDDEN;
+    }
+}
+

@@ -1,0 +1,21 @@
+{
+  "name": "<name>",
+  "description": "<description>",
+  "version": "<version>",
+  "contributors": [
+    {
+      "name": "<contributor name>",
+      "email": "<contributor email>"
+    }
+  ],
+  "yahoo": {
+    "custodian": {
+      "email": "<custodian email>",
+      "url": "<custodian url>"
+    },
+    "bugzilla": {
+      "product": "<bugzilla component>",
+      "component": "<bugzilla product>"
+    }
+  }
+}
